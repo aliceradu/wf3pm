@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+body{
+	background-color: green;
+}
+
+header a{
+	background-color: green;
+	color: white;
+	font-weight: bold;	
+}
+header a:hover{
+	background-color: white;
+	color: green;
+}
+img{
+	height: 50%;
+}
+li img{
+	height: 40px;
+	border-radius: 3px;
+}
+#carouselExampleControls{
+	width: 50%;
+	margin: auto;
+}
+
+
+/*footer*/
+
+footer{
+  color: green;
+}
+
+footer h4{
+	color:white;
+}
+footer a{
+  color: #bfffff;
+}
+footer a:hover{
+  color: white;
+}
+
+.footer-bottom{
+  background: #3d6277;
+  padding: 2em;
+}
+.footer-top{
+  background: #2d4958;  
+}
+.footer-middle{
+   background: #3d6277;
+  padding-top: 2em;
+  color: white;
+}
+/**Sub Navigation**/
+.subnavigation-container{
+  background: #3d6277;
+}
+.subnavigation .nav-link{
+  color: white;
+  font-weight: bold;
+}
+.subnavigation-container{
+  text-align: center;
+}
+.subnavigation-container .navbar{
+  display: inline-block;
+  margin-bottom: -6px; /* Inline-block margin offffset HACK -Gilron */
+}
+.col-subnav a{
+  padding: 1rem 1rem;
+  color: white;
+  font-weight: bold;
+}
+.col-subnav .active{
+  border-top:5px solid orange;
+ background: white;
+  color: black;
+}
+
+form{
+	width: 50%;
+	margin: auto;
+}
+
+.btn-primary{
+	background-color: black;
+	color: white;
+}
