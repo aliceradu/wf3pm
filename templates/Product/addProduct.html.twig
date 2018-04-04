@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add product{% endblock %}
+
+{% block body %}	
+
+<!-- 
+<form action="/html/tags/html_form_tag_action.cfm">
+
+    <fieldset class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="product_name" name="product_namee">
+    </fieldset>
+    
+    <fieldset class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="product_description" name="product_description">
+    </fieldset>
+    
+      <fieldset class="form-group">
+        <label for="version">Version</label>
+        <input type="text" class="form-control" id="product_version" name="product_version">
+    </fieldset>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+    
+</form>
+-->
+    
+    {{ form_start(formular) }}
+    
+       	{{ form_label(formular.name) }}
+    	{{ form_widget(formular.name) }}
+    	
+
+    	{{ form_label(formular.description) }}
+    	{{ form_widget(formular.description) }}
+    	
+
+    	{{ form_label(formular.version) }}
+    	{{ form_widget(formular.version) }}
+    	
+    	
+    	{{ form_label(formular.submit) }}
+    	{{ form_widget(formular.submit) }}
+    	
+    
+	{{ form_end(formular) }}
+
+{% endblock %}

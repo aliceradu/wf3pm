@@ -4,15 +4,6 @@ body{
 	background-color: green;
 }
 
-header a{
-	background-color: green;
-	color: white;
-	font-weight: bold;	
-}
-header a:hover{
-	background-color: white;
-	color: green;
-}
 img{
 	height: 50%;
 }
@@ -25,11 +16,32 @@ li img{
 	margin: auto;
 }
 
+/*********************************navbar**/
+header a{
+	background-color: none;
+	font-weight: bold;	
+	border-radius: 3px;
+}
+header a:hover{
+	background-color: green;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: green;
+}
 
-/*footer*/
+.navbar-light .navbar-nav .nav-link:hover {
+    color: white;
+}
+header{
+	margin-bottom: 10px;
+}
+/*********************************footer**/
 
 footer{
   color: green;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
 }
 
 footer h4{
@@ -54,7 +66,7 @@ footer a:hover{
   padding-top: 2em;
   color: white;
 }
-/**Sub Navigation**/
+/************************Sub Navigation**/
 .subnavigation-container{
   background: #3d6277;
 }
@@ -80,12 +92,30 @@ footer a:hover{
   color: black;
 }
 
-form{
-	width: 50%;
-	margin: auto;
-}
-
 .btn-primary{
 	background-color: black;
 	color: white;
+}
+
+/*****************************add product**/
+
+form{
+	position: absolute;
+ 	left: 50%;
+ 	top: 50%;
+	transform: translate(-50%, -50%);
+
+}
+label{
+	color:white;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.btn-dark{
+	margin-top: 10px;	
+}
+
+span .form-error-message{
+	color:white;
 }
