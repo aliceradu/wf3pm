@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class UserController{
@@ -29,8 +30,10 @@ class UserController{
         Request $request,
         ObjectManager $manager,
         SessionInterface $session,
-        UrlGeneratorInterface $urlGenerator
-    ){
+        UrlGeneratorInterface $urlGenerator,
+        \Swift_Mailer $mailer
+    )
+    {
             
         $user = new User();
         $builder = $factory->createBuilder(FormType::class, $user);
@@ -70,19 +73,55 @@ class UserController{
             $manager->persist($user);
             $manager->flush();
             
-            $session->getFlashBag()->add('info', 'Your profile was created. Please check your e-mails.');
+            $message = new \Swift_Message();
+            $message
+                ->setFrom('wf3pm@localhost.com')
+                ->setTo($user->getEmail())
+                ->setSubject('Validate your account')
+                ->setBody(
+                    $twig->render(
+                        'Mail/accountCreation.html.twig',
+                        ['user'=> $user]
+                        )
+                    );
+            
+            $mailer->send($message); 
+               
+            
+            $session->getFlashBag()->add('info', 'Your account was created. Please check your e-mails.');
             
             return new RedirectResponse($urlGenerator->generate('homepage'));
         }
-        
-        
+                
         return new Response(
             $twig->render(
                 'User/registerUser.html.twig',
                 [
                     'registrationFormular'=>$form->createView()
                 ]
-                )
-            );
+            )
+        );
+    }
+    
+    public function activateUser($token, ObjectManager $manager, SessionInterface $session, UrlGeneratorInterface $urlGenerator)
+    {
+        
+        $userRepository = $manager->getRepository(User::class);
+        
+        $user = $userRepository->findOneByEmailToken($token);
+        
+        if(!$user){
+            throw new NotFoundHttpException('User not found for given token');
+        }
+        
+        $user->setActive(true);
+        $user->setEmailToken(null);
+        $username = $user->getUsername();
+        
+        $manager->flush();
+        $session->getFlashBag()->add('info', "Welcome $username!");
+        
+        
+        return new RedirectResponse($urlGenerator->generate('homepage'));
     }
 }

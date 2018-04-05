@@ -13,4 +13,10 @@ add_product:
 register_user:
    path: /register/user
    controller: App\Controller\UserController::registerUser 
-   
+  
+activate_user:
+ path: /activate/user/{token}
+ controller: App\Controller\UserController::activateUser 
+ requirements:
+     token: '[a-z0-9-]+'
+     
