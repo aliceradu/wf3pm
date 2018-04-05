@@ -1,0 +1,18 @@
+
+Exercise Register page  2-4H
+NO LOGIN!!! NO LOGIN!!! NO LOGIN!!! NO LOGIN!!!
+
+1. An entity App\Entity\User
+	* username (string)
+	* firstname (string)
+	* lastname (string)
+	* email (string)
+	* password (string(255))   Not encoded
+	* active (boolean)
+
+2. Controller App\Controller\UserController
+	* an action "register"
+
+3. A form
+4. A template
+5. A route

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register user{% endblock %}
+
+{% block body %}	
+
+    {{ form_start(registrationFormular) }}
+    
+       	{{ form_label(registrationFormular.username) }}
+    	{{ form_widget(registrationFormular.username) }}
+    	
+
+    	{{ form_label(registrationFormular.firstname) }}
+    	{{ form_widget(registrationFormular.firstname) }}
+    	
+    	{{ form_label(registrationFormular.lastname) }}
+    	{{ form_widget(registrationFormular.lastname) }}
+    	
+
+    	{{ form_label(registrationFormular.email) }}
+    	{{ form_widget(registrationFormular.email) }}
+    	
+    	{{ form_widget(registrationFormular.password) }}
+    	
+    	{{ form_label(registrationFormular.submit) }}
+    	{{ form_widget(registrationFormular.submit) }}
+    	
+    
+	{{ form_end(registrationFormular) }}
+
+{% endblock %}
