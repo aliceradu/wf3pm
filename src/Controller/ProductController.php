@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
 class ProductController
@@ -22,7 +23,9 @@ class ProductController
         FormFactoryInterface $factory, 
         Request $request,
         ObjectManager $manager,
-        SessionInterface $session){
+        SessionInterface $session,
+        UrlGeneratorInterface $urlGenerator
+    ){
         
         $product = new Product();
         $builder = $factory->createBuilder(FormType::class, $product);
@@ -50,7 +53,7 @@ class ProductController
             
             $session->getFlashBag()->add('info', 'Your product was created');
             
-            return new RedirectResponse('/');
+            return new RedirectResponse($urlGenerator->generate('homepage'));
         }
         
         
