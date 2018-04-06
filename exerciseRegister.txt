@@ -20,3 +20,14 @@ NO LOGIN!!! NO LOGIN!!! NO LOGIN!!! NO LOGIN!!!
 // doctrine:migrations:migrate
 
 ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-,]).{8,}$
+
+
+
+********************************************
+exercice list projects
+
+route
+controller method
+get all from repository
+render template
+	foreach products: display

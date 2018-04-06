@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Repository\ProductRepository;
 
 
 class ProductController
@@ -31,15 +32,19 @@ class ProductController
         $builder = $factory->createBuilder(FormType::class, $product);
         $builder
             ->add('name', TextType::class,
-                ['attr'=> ['placeholder' => 'Product name here please'], 
+                ['label'=>'PRODUCT.NAME'],
+                ['attr'=> ['placeholder' => 'PRODUCT.PLACEHOLDER.NAME'], 
                 'required' => false])
             ->add('description', TextareaType::class, 
+                ['label'=>'PRODUCT.DESCRIPTION'],
                 ['required' => false, 
-                 'attr' => ['placeholder' => 'Description here please']   
+                 'attr' => ['placeholder' => 'PRODUCT.PLACEHOLDER.DESCRIPTION']   
                 ])
             ->add('version', TextType::class,
-                ['attr'=> ['placeholder' => 'Version here please']])
+                ['label'=>'PRODUCT.VERSION'],
+                ['attr'=> ['placeholder' => 'PRODUCT.PLACEHOLDER.VERSION']])
             ->add('submit', SubmitType::class,
+                ['label'=>'PRODUCT.SUBMIT'],
                 ['attr' => ['class'=>'btn btn-dark']]);
         
                
@@ -65,6 +70,26 @@ class ProductController
                 ]
             )
         );
+    }
+
+    public function listProduct(
+        ObjectManager $manager,
+        UrlGeneratorInterface $urlGenerator,
+        Environment $twig,
+        ProductRepository $product
+        )
+    {
+      /*$productRepository = $manager->getRepository(Product::class);
+      $product = $productRepository->findAll();*/
+      
+      return new Response(
+          $twig->render(
+              'Product/listProduct.html.twig',
+              [
+                  'product'=>$product->findAll()
+              ]
+              )   
+          );
     }
 }
 

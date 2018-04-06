@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class UserController{
@@ -39,13 +40,13 @@ class UserController{
         $builder = $factory->createBuilder(FormType::class, $user);
         $builder
             ->add('username', TextType::class,
-                ['required' => true,'label' => 'Username', 'attr'=> ['placeholder' => 'Username here please']])
+                ['required' => true,'label' => 'USER.USERNAME', 'attr'=> ['placeholder' => 'USER.PLACEHOLDER.USERNAME']])
             ->add('firstname', TextType::class,
-                ['required' => true, 'label' => 'First Name', 'attr' => ['placeholder' => 'First name here please']])
+                ['required' => true, 'label' => 'USER.FIRST.NAME', 'attr' => ['placeholder' => 'USER.PLACEHOLDER.FIRST.NAME']])
             ->add('lastname', TextType::class,
-                ['required' => true, 'label' => 'Last Name', 'attr'=> ['placeholder' => 'Last name here please']])
+                ['required' => true, 'label' => 'USER.LAST.NAME', 'attr'=> ['placeholder' => 'USER.PLACEHOLDER.LAST.NAME']])
             ->add('email', EmailType::class,
-                ['required' => true, 'label' => 'E-mail address', 'attr' => ['placeholder' => 'Email here please']])
+                ['required' => true, 'label' => 'USER.EMAIL.ADDRESS', 'attr' => ['placeholder' => 'USER.PLACEHOLDER.EMAIL.ADDRESS']])
             ->add(
                 'password', 
                 RepeatedType::class,
@@ -53,10 +54,10 @@ class UserController{
                     'type' => PasswordType::class,
                     'invalid_message' => 'The password fields must match.',
                     
-                    'options' => array('attr' => array ('class' => 'password-field', 'placeholder' => 'Password here please')),
+                    'options' => array('attr' => array ('class' => 'password-field', 'placeholder' => 'USER.PLACEHOLDER.PASSWORD')),
                     'required' => true,
-                    'first_options'  => array('label' => 'Password'),
-                    'second_options' => array('label' => 'Repeat Password', 'attr' => array('placeholder' => 'Repeat password here please')),
+                    'first_options'  => array('label' => 'USER.PASSWORD'),
+                    'second_options' => array('label' => 'USER.REPEAT.PASSWORD', 'attr' => array('placeholder' => 'USER.PLACEHOLDER.REPEAT.PASSWORD')),
                     ]
                 )
             ->add(
@@ -80,10 +81,16 @@ class UserController{
                 ->setSubject('Validate your account')
                 ->setBody(
                     $twig->render(
+                        'Mail/accountCreation.txt.twig',
+                        ['user'=> $user]
+                        )
+                    )
+                -> addPart($twig->render(
                         'Mail/accountCreation.html.twig',
                         ['user'=> $user]
                         )
-                    );
+                        , 'text/plain'
+                  );
             
             $mailer->send($message); 
                
@@ -124,4 +131,18 @@ class UserController{
         
         return new RedirectResponse($urlGenerator->generate('homepage'));
     }
+    
+    public function  usernameAvailable(
+        Request $request,
+        UserRepository $repository){
+        
+        $username = $request->request->get('username');
+        
+        $unavailable = $repository->usernameExist($username);
+        
+        return new JsonResponse([
+            'available'=> !$unavailable
+        ]);
+    }
+    
 }

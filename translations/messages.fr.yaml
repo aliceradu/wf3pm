@@ -1,0 +1,33 @@
+HEADER.HOME: Accueil
+HEADER.PROJECTS: Projets
+HEADER.LOGIN: Identification
+HEADER.REGISTER: Inscription
+HEADER.ADD: Ajouter projet
+HEADER.LIST: Liste projets
+HEADER.LANGUAGE.EN: Anglais
+HEADER.LANGUAGE.FR: "Français"
+HEADER.LANGUAGE: Langue
+USER:
+    USERNAME: "Nom d'utilisateur"
+    FIRST.NAME: Prénom
+    LAST.NAME: Nom
+    EMAIL.ADDRESS: "Adresse e-mail"
+    PASSWORD: Mot de passe
+    REPEAT.PASSWORD: Retaper mot de passe
+    PLACEHOLDER: 
+       FIRST.NAME: Votre prénom ici svp
+       LAST.NAME: Votre prénom ici svp
+       EMAIL.ADDRESS: "Adresse e-mail ici svp"
+       PASSWORD: Mot de passe ici svp
+       REPEAT.PASSWORD: Retaper mot de passe svp
+PRODUCT: 
+    NAME: Nom du projet
+    DESCRIPTION: Description
+    VERSION: Version
+    SUBMIT: Ajouter
+    PLACEHOLDER:
+       NAME: "Insérer le nom du projet"
+       DESCRIPTION: "Insérer la description"
+       VERSION: "Insérer la version" 
+ADD.PRODUCT: Ajouter projet
+LIST.PRODUCT: Liste des projets      
