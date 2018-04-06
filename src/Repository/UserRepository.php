@@ -27,7 +27,7 @@ class UserRepository extends ServiceEntityRepository
             ->where('u.username = :username')
             ->setParameter('username', $username);
         
-            return $queryBuilder-getQuery()->getOneOrFalse();
+            $result = $queryBuilder->getQuery()->getOneOrNullResult();
             return boolval($result['count']);
     }
 

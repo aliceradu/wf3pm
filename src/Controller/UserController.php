@@ -132,17 +132,22 @@ class UserController{
         return new RedirectResponse($urlGenerator->generate('homepage'));
     }
     
-    public function  usernameAvailable(
+    public function usernameAvailable(
         Request $request,
         UserRepository $repository){
         
         $username = $request->request->get('username');
         
-        $unavailable = $repository->usernameExist($username);
-        
-        return new JsonResponse([
+        $unavailable = false;
+        if(!empty($username)){
+            $unavailable = $repository->usernameExist($username);
+        }
+        return new JsonResponse(
+            [
             'available'=> !$unavailable
-        ]);
+            ]
+        );
+       
     }
     
 }
