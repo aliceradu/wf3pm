@@ -1,6 +1,7 @@
 HEADER.HOME: Home
 HEADER.PROJECTS: Projects
 HEADER.LOGIN: Login
+HEADER.LOGOUT: Logout 
 HEADER.REGISTER: Register
 HEADER.ADD: Add project
 HEADER.LIST: List project
@@ -40,4 +41,4 @@ LOGIN:
      USERNAME: Username
      PASSWORD: Password
      LOGIN: Login
-    
+

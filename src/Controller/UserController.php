@@ -130,7 +130,7 @@ class UserController{
         );
     }
     
-    public function activateUser($token, ObjectManager $manager, SessionInterface $session, UrlGeneratorInterface $urlGenerator)
+    public function activateUser($token, ObjectManager $manager, SessionInterface $session, UrlGeneratorInterface $urlGenerator, RoleRepository $roleRepository)
     {
         
         $userRepository = $manager->getRepository(User::class);
@@ -143,6 +143,9 @@ class UserController{
         
         $user->setActive(true);
         $user->setEmailToken(null);
+        
+        $user->addRole($roleRepository->findOneByLabel('ROLE_ACTIVE'));
+        
         $username = $user->getUsername();
         
         $manager->flush();

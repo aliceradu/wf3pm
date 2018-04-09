@@ -1,6 +1,7 @@
 HEADER.HOME: Accueil
 HEADER.PROJECTS: Projets
 HEADER.LOGIN: Identification
+HEADER.LOGOUT: Déconnexion
 HEADER.REGISTER: Inscription
 HEADER.ADD: Ajouter projet
 HEADER.LIST: Liste projets
@@ -39,3 +40,4 @@ LOGIN:
      USERNAME: "Nom d'utilisateur"
      PASSWORD: Mot de passe
      LOGIN: Connexion
+     

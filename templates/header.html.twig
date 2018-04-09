@@ -19,17 +19,27 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="{{ path('list_product') }}">{{ 'HEADER.LIST'|trans }}</a>
+          
+        {% if is_granted('ROLE_ACTIVE') %}  
           <a class="dropdown-item" href="{{ path('add_product') }}">{{ 'HEADER.ADD'|trans }}</a>
+        {% endif %} 
+        
         </div>
       </li>
       
-      <li class="nav-item">
-        <a class="nav-link" href="{{ path('login') }}">{{ 'HEADER.LOGIN'|trans }}</a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{{ path('register_user') }}">{{ 'HEADER.REGISTER'|trans }}</a>
-      </li>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('logout') }}">{{ 'HEADER.LOGOUT'|trans }}</a>
+          </li>
+      {% else %}   
+           <li class="nav-item">
+              <a class="nav-link" href="{{ path('login') }}">{{ 'HEADER.LOGIN'|trans }}</a>
+          </li>
+             
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('register_user') }}">{{ 'HEADER.REGISTER'|trans }}</a>
+          </li>
+     {% endif %}
       
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
