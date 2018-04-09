@@ -8,6 +8,7 @@ HEADER.LANGUAGE.EN: English
 HEADER.LANGUAGE.FR: French
 HEADER.LANGUAGE: Language
 USER:
+    TITLE: Registration form
     USERNAME: Username
     FIRST.NAME: First name
     LAST.NAME: Last name

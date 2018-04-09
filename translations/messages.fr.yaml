@@ -8,6 +8,7 @@ HEADER.LANGUAGE.EN: Anglais
 HEADER.LANGUAGE.FR: "Français"
 HEADER.LANGUAGE: Langue
 USER:
+    TITLE: "Formulaire d'inscription"
     USERNAME: "Nom d'utilisateur"
     FIRST.NAME: Prénom
     LAST.NAME: Nom

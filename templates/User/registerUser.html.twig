@@ -4,7 +4,7 @@
 
 {% block body %}	
 
-	{{ '<h1>Registration form</h1>' }}
+	 <h1>{{ "USER.TITLE"|trans }}</h1>
 
     {{ form_start(registrationFormular) }}
     
@@ -30,4 +30,9 @@
     
 	{{ form_end(registrationFormular) }}
 
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/register.js" type="text/javascript"></script>
 {% endblock %}

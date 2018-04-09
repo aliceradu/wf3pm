@@ -132,3 +132,5 @@ span .form-error-message{
 	color:white;
 }
 
+.username-available{color:blue}
+.username-unavailable{color:red}
