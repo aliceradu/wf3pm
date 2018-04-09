@@ -28,11 +28,12 @@ register_user:
   
 activate_user:
    path: /{_locale}/activate/user/{token} 
+   controller: App\Controller\UserController::activateUser
    defaults:
       _locale: en
    requirements:
       _locale: 'en|fr' 
-      token: '[a-z0-9]+'
+      token: '[a-z0-9-]+'
       
 list_product:
    path: /{_locale}/list/product
@@ -47,7 +48,9 @@ username_available:
    controller: App\Controller\UserController::usernameAvailable
    methods: ['POST']
 
-
+login:
+    path: /{_locale}/login
+    controller: App\Controller\UserController::login
 
   
 

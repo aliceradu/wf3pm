@@ -50,10 +50,11 @@ h1{
 /*********************************footer**/
 
 footer{
-  color: green;
-  bottom: 0px;
-  position: fixed;
-  width: 100%;
+    color: green;
+    bottom: 20px;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
 
 footer h4{
@@ -134,3 +135,7 @@ span .form-error-message{
 
 .username-available{color:blue}
 .username-unavailable{color:red}
+
+#login-form{
+	text-align:left;
+}

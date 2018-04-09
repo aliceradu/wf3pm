@@ -20,6 +20,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use App\Repository\RoleRepository;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class UserController{
@@ -32,7 +35,9 @@ class UserController{
         ObjectManager $manager,
         SessionInterface $session,
         UrlGeneratorInterface $urlGenerator,
-        \Swift_Mailer $mailer
+        \Swift_Mailer $mailer,
+        EncoderFactoryInterface $encoderFactory,
+        RoleRepository $roleRepository
     )
     {
             
@@ -71,12 +76,27 @@ class UserController{
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
+            
+            $salt = md5($user->getUsername());
+            $user->setSalt($salt);
+            
+            $encoder = $encoderFactory->getEncoder(User::class);
+            
+            $password = $encoder->encodePassword(
+                $user->getPassword(), 
+                $salt
+                );
+            
+            $user->setPassword($password);
+            
+            $user->addRole($roleRepository->findOneByLabel('ROLE_USER'));
+            
             $manager->persist($user);
             $manager->flush();
             
             $message = new \Swift_Message();
             $message
-                ->setFrom('wf3pm@localhost.com')
+                ->setFrom('alicegabriela.radu@gmail.com')
                 ->setTo($user->getEmail())
                 ->setSubject('Validate your account')
                 ->setBody(
@@ -148,6 +168,22 @@ class UserController{
             ]
         );
        
+    }
+    public function login(
+        AuthenticationUtils $authUtils,
+        Environment $twig
+        ){
+        $errors = $authUtils->getLastAuthenticationError();
+        $lastUsername = $authUtils->getLastUsername();
+        
+        return new Response(
+            $twig->render('Security/login.html.twig',
+            [
+                'last_username'=>$authUtils->getLastUsername(),
+                'error'=> $authUtils->getLastAuthenticationError()
+            ]
+         )       
+      );
     }
     
 }

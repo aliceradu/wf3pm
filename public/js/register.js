@@ -9,14 +9,14 @@ function validate(userName) {
 			
 			if (responseData.available) {
 				$('label[for="form_username"]').append(
-					'<span class="username-available username-validation"> available</span>'
+					'<span class="username-available username-validation">  ✔</span>'
 				);
 				
 				return;
 			}
 
 			$('label[for="form_username"]').append(
-				'<span class="username-unavailable username-validation"> unavailable</span>'
+				'<span class="username-unavailable username-validation"> ❌</span>'
 			);
 		}
 	);

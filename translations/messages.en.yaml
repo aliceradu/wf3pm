@@ -9,6 +9,7 @@ HEADER.LANGUAGE.FR: French
 HEADER.LANGUAGE: Language
 USER:
     TITLE: Registration form
+    AVAILABLE: available
     USERNAME: Username
     FIRST.NAME: First name
     LAST.NAME: Last name
@@ -33,4 +34,10 @@ PRODUCT:
        VERSION: Insert version
 ADD.PRODUCT: Add project
 LIST.PRODUCT: List of projects       
+    
+LOGIN:
+     TITLE: Login
+     USERNAME: Username
+     PASSWORD: Password
+     LOGIN: Login
     

@@ -9,6 +9,7 @@ HEADER.LANGUAGE.FR: "Français"
 HEADER.LANGUAGE: Langue
 USER:
     TITLE: "Formulaire d'inscription"
+    AVAILABLE: disponible
     USERNAME: "Nom d'utilisateur"
     FIRST.NAME: Prénom
     LAST.NAME: Nom
@@ -31,4 +32,10 @@ PRODUCT:
        DESCRIPTION: "Insérer la description"
        VERSION: "Insérer la version" 
 ADD.PRODUCT: Ajouter projet
-LIST.PRODUCT: Liste des projets      
+LIST.PRODUCT: Liste des projets   
+   
+LOGIN:
+     TITLE: Identification
+     USERNAME: "Nom d'utilisateur"
+     PASSWORD: Mot de passe
+     LOGIN: Connexion
