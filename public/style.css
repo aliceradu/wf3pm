@@ -139,3 +139,13 @@ span .form-error-message{
 #login-form{
 	text-align:left;
 }
+
+/************************ product details*/
+.btn-block a{
+	color:white;
+	padding: 5px 60px;
+}
+
+.card{
+	box-shadow: 5px 5px 10px #ffffff;
+}

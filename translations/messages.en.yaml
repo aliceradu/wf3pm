@@ -34,7 +34,8 @@ PRODUCT:
        DESCRIPTION: Insert description
        VERSION: Insert version
 ADD.PRODUCT: Add project
-LIST.PRODUCT: List of projects       
+LIST.PRODUCT: List of projects 
+DETAILS.PRODUCT: Product details
     
 LOGIN:
      TITLE: Login

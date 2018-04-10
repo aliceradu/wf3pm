@@ -54,6 +54,9 @@ login:
 
 logout:
     path: /logout
-   
+ 
+details_product:
+    path: /{_locale}/details/product
+    controller: App\Controller\ProductController::productDetails
 
   

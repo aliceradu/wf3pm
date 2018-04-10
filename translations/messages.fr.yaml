@@ -34,6 +34,7 @@ PRODUCT:
        VERSION: "Insérer la version" 
 ADD.PRODUCT: Ajouter projet
 LIST.PRODUCT: Liste des projets   
+DETAILS.PRODUCT: "Détails du produit"
    
 LOGIN:
      TITLE: Identification
