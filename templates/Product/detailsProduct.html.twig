@@ -9,17 +9,45 @@
 	  
 	   <div class="col-sm-4">
      	
-       	 	<div class="card text-white bg-warning mb-3 mb-3" style="max-width: 18rem;">
-              <div class="card-header">{{product.version}}</div>
-              <div class="card-body">
-                <h5 class="card-title">{{product.name}}</h5>
-                <p class="card-text">{{product.description}}</p>
-              </div>
-               <div class="card-footer">
-               	<button class="btn btn-block btn-success"><a href="{{ path('list_product') }}"> Back to the list</a></button>
-              </div>
+            <div class="card text-white bg-warning mb-3 mb-3" style="max-width: 18rem;">
+                
+                <div class="card-header">{{product.version}}</div>
+                
+                    <div class="card-body">
+                        
+                        <h5 class="card-title">{{product.name}}</h5>
+                        
+                        <p class="card-text">{{product.description}}</p>
+                        
+                       		
+                                {% for comment in product.getComments() %}
+                                	<div  class="card-comment">
+                                    	<p>{{ comment.getAuthor().getUsername() }}</p>
+                                    	<p>{{ comment.getComment() }}</p>
+                                    	
+                                        {% for file in comment.getFiles() %}
+                                        	{% if file.getMemeType()|slice(0,6) == 'image/' %}
+                                        		<img style="max-width: 80%; height:auto; border-radius:5px;" alt="{{ file.getName() }}" src="{{ file.getFileUrl() }}">
+                                        	{% else %}
+                                        		<a href="{{ file.getFileUrl() }}">Download {{ file.getName }}</a>
+                                        	{% endif %}
+                                        {% endfor %}
+                                	</div>
+                                 {% endfor %} 
+                                                    
+					 </div>
+					                        
+                </div>
+                
+            </div>
+            
+             <div>
+               	{{ form(formComment) }}
              </div>
-                             
+            <div class="card-footer">
+            	<button class="btn btn-block btn-success"><a href="{{ path('list_product') }}"> Back to the list</a></button>
+            </div> 
+
       	</div> 
           	
     	
