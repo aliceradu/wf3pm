@@ -1,5 +1,7 @@
 function addFileInput(){
+	
 	var prototype = $('#comment_files').data('prototype');
+	
 	var count = $('#comment_files > .form-group').length;
 	
 	
